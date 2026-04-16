@@ -27,15 +27,12 @@ namespace cs_dllproxy
             var selection = AnsiConsole.Prompt(new SelectionPrompt<string>().Title("Select dll to proxy (Must be system library)").AddChoices(dict.Keys));
 
             string template = "";
-            string def = "LIBRARY\nEXPORTS";
 
-            template += "#include <windows.h>\n\n//LOOK UP CALLING CONVENTIONS FOR FUNCTIONS MANUALLY\n";
+            template += "#include <windows.h>\n\n";
 
             foreach (var value in dict[selection])
             {
-                template += $"typedef VOID(__stdcall* f_{value})(/*args*/);\n";
-                template += $"VOID __stdcall* f{value})(/*args*/) {{f_{value} func = (f_{value})GetProcAddress(LoadLibraryExA(\"{selection}\", NULL, LOAD_LIBRARY_SEARCH_SYSTEM32), \"{value}\"); return func(/*args*/);}}\n\n";
-                def += $"\n{value}=f{value}";
+                template += $"#pragma comment(linker, \"/EXPORT:{value}=\\\\.\\GLOBALROOT\\SystemRoot\\System32\\{selection}.{value}\")\n";
             }
 
             template += "\n";
@@ -45,7 +42,6 @@ namespace cs_dllproxy
             template += "BOOL APIENTRY DllMain(HMODULE hModule, DWORD ul_reason_for_call, LPVOID lpReserved)\r\n{\r\n    switch (ul_reason_for_call)\r\n    {\r\n    case DLL_PROCESS_ATTACH:\r\n        CreateThread(NULL, 0, (LPTHREAD_START_ROUTINE)doStuff, NULL, 0, NULL);\r\n        break;\r\n    case DLL_THREAD_ATTACH:\r\n        break;\r\n    case DLL_THREAD_DETACH:\r\n        break;\r\n    case DLL_PROCESS_DETACH:\r\n        break;\r\n    }\r\n    return TRUE;\r\n}";
 
             File.WriteAllText("proxy.cpp", template);
-            File.WriteAllText("proxy.def", def);
         }
     }
 }
