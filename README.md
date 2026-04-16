@@ -1,4 +1,4 @@
-# cs-dllproxy
+## cs-dllproxy
 
 Create C++ dll proxy template using PE file import table
 <br><br>
@@ -7,12 +7,11 @@ Generated function calls do not have their corresponding arguments and return ty
 <br><br>
 *barely tested*
 
-# Usage
+## Usage
 ```
 cs-dllproxy.exe <filePath>
 ```
----
-Example Output:<br>
+## Example Output
 > cpp file
 ```C++
 #include <windows.h>
