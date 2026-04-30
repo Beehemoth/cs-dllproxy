@@ -34,7 +34,7 @@ namespace cs_dllproxy
             foreach (var value in dict[selection])
             {
                 template += $"typedef VOID(__stdcall* f_{value})(/*args*/);\n";
-                template += $"VOID __stdcall* f{value})(/*args*/) {{f_{value} func = (f_{value})GetProcAddress(LoadLibraryExA(\"{selection}\", NULL, LOAD_LIBRARY_SEARCH_SYSTEM32), \"{value}\"); return func(/*args*/);}}\n\n";
+                template += $"VOID __stdcall f{value}(/*args*/) {{f_{value} func = (f_{value})GetProcAddress(LoadLibraryExA(\"{selection}\", NULL, LOAD_LIBRARY_SEARCH_SYSTEM32), \"{value}\"); return func(/*args*/);}}\n\n";
                 def += $"\n{value}=f{value}";
             }
 
