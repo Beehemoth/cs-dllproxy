@@ -17,17 +17,17 @@ cs-dllproxy.exe <filePath>
 #include <windows.h>
 
 //LOOK UP CALLING CONVENTIONS FOR FUNCTIONS MANUALLY
-typedef VOID(__stdcall* f_SetupDiEnumDeviceInfo)(/*args*/);
-VOID __stdcall* fSetupDiEnumDeviceInfo)(/*args*/) {f_SetupDiEnumDeviceInfo func = (f_SetupDiEnumDeviceInfo)GetProcAddress(LoadLibraryExA("SETUPAPI.dll", NULL, LOAD_LIBRARY_SEARCH_SYSTEM32), "SetupDiEnumDeviceInfo"); return func(/*args*/);}
+typedef VOID(__stdcall* f_SetupDiEnumDeviceInfo(/*args*/);
+VOID __stdcall fSetupDiEnumDeviceInfo(/*args*/) {f_SetupDiEnumDeviceInfo func = (f_SetupDiEnumDeviceInfo)GetProcAddress(LoadLibraryExA("SETUPAPI.dll", NULL, LOAD_LIBRARY_SEARCH_SYSTEM32), "SetupDiEnumDeviceInfo"); return func(/*args*/);}
 
 typedef VOID(__stdcall* f_SetupDiDestroyDeviceInfoList)(/*args*/);
-VOID __stdcall* fSetupDiDestroyDeviceInfoList)(/*args*/) {f_SetupDiDestroyDeviceInfoList func = (f_SetupDiDestroyDeviceInfoList)GetProcAddress(LoadLibraryExA("SETUPAPI.dll", NULL, LOAD_LIBRARY_SEARCH_SYSTEM32), "SetupDiDestroyDeviceInfoList"); return func(/*args*/);}
+VOID __stdcall fSetupDiDestroyDeviceInfoList(/*args*/) {f_SetupDiDestroyDeviceInfoList func = (f_SetupDiDestroyDeviceInfoList)GetProcAddress(LoadLibraryExA("SETUPAPI.dll", NULL, LOAD_LIBRARY_SEARCH_SYSTEM32), "SetupDiDestroyDeviceInfoList"); return func(/*args*/);}
 
 typedef VOID(__stdcall* f_SetupDiGetDeviceRegistryPropertyA)(/*args*/);
-VOID __stdcall* fSetupDiGetDeviceRegistryPropertyA)(/*args*/) {f_SetupDiGetDeviceRegistryPropertyA func = (f_SetupDiGetDeviceRegistryPropertyA)GetProcAddress(LoadLibraryExA("SETUPAPI.dll", NULL, LOAD_LIBRARY_SEARCH_SYSTEM32), "SetupDiGetDeviceRegistryPropertyA"); return func(/*args*/);}
+VOID __stdcall fSetupDiGetDeviceRegistryPropertyA(/*args*/) {f_SetupDiGetDeviceRegistryPropertyA func = (f_SetupDiGetDeviceRegistryPropertyA)GetProcAddress(LoadLibraryExA("SETUPAPI.dll", NULL, LOAD_LIBRARY_SEARCH_SYSTEM32), "SetupDiGetDeviceRegistryPropertyA"); return func(/*args*/);}
 
 typedef VOID(__stdcall* f_SetupDiGetClassDevsW)(/*args*/);
-VOID __stdcall* fSetupDiGetClassDevsW)(/*args*/) {f_SetupDiGetClassDevsW func = (f_SetupDiGetClassDevsW)GetProcAddress(LoadLibraryExA("SETUPAPI.dll", NULL, LOAD_LIBRARY_SEARCH_SYSTEM32), "SetupDiGetClassDevsW"); return func(/*args*/);}
+VOID __stdcall fSetupDiGetClassDevsW(/*args*/) {f_SetupDiGetClassDevsW func = (f_SetupDiGetClassDevsW)GetProcAddress(LoadLibraryExA("SETUPAPI.dll", NULL, LOAD_LIBRARY_SEARCH_SYSTEM32), "SetupDiGetClassDevsW"); return func(/*args*/);}
 
 
 void doStuff()
